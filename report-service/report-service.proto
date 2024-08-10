@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package report;
+
+option go_package = "./genproto/report";
+
+service ReportService {
+    rpc GetSpendingReport(GetSpendingReportRequest) returns (SpendingReportResponse);
+    rpc GetIncomeReport(GetIncomeReportRequest) returns (IncomeReportResponse);
+    rpc GetBudgetPerformanceReport(GetBudgetPerformanceReportRequest) returns (BudgetPerformanceReportResponse);
+    rpc GetGoalProgressReport(GetGoalProgressReportRequest) returns (GoalProgressReportResponse);
+}
+
+message GetSpendingReportRequest {
+    string user_id = 1;
+    string start_date = 2;
+    string end_date = 3;
+}
+
+message GetIncomeReportRequest {
+    string user_id = 1;
+    string start_date = 2;
+    string end_date = 3;
+}
+
+message GetBudgetPerformanceReportRequest {
+    string user_id = 1;
+    string start_date = 2;
+    string end_date = 3;
+}
+
+message GetGoalProgressReportRequest {
+    string user_id = 1;
+}
+
+message SpendingReportResponse {
+    float total_spending = 1;
+    map<string, float> category_spending = 2;
+}
+
+message IncomeReportResponse {
+    float total_income = 1;
+    map<string, float> category_income = 2;
+}
+
+message BudgetPerformanceReportResponse {
+    float total_budget = 1;
+    float total_spent = 2;
+    map<string, float> category_performance = 3;
+}
+
+message GoalProgressReportResponse {
+    repeated GoalResponse goals = 1;
+}
+
+message GoalResponse {
+    string id = 1;
+    string user_id = 2;
+    string name = 3;
+    float target_amount = 4;
+    float current_amount = 5;
+    string deadline = 6;
+    string status = 7;
+    string created_at = 8;
+    string updated_at = 9;
+}

@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package goal;
+
+option go_package = "./genproto/goal";
+
+service GoalService {
+    rpc CreateGoal(CreateGoalRequest) returns (GoalResponse);
+    rpc GetGoals(GetGoalsRequest) returns (GoalsResponse);
+    rpc GetGoalById(GetGoalByIdRequest) returns (GoalResponse);
+    rpc UpdateGoal(UpdateGoalRequest) returns (GoalResponse);
+    rpc DeleteGoal(DeleteGoalRequest) returns (Empty);
+}
+
+message CreateGoalRequest {
+    string user_id = 1;
+    string name = 2;
+    float target_amount = 3;
+    float current_amount = 4;
+    string deadline = 5;
+    string status = 6;
+}
+
+message GetGoalsRequest {
+    string user_id = 1;
+}
+
+message GetGoalByIdRequest {
+    string id = 1;
+}
+
+message UpdateGoalRequest {
+    string id = 1;
+    string name = 2;
+    float target_amount = 3;
+    float current_amount = 4;
+    string deadline = 5;
+    string status = 6;
+}
+
+message DeleteGoalRequest {
+    string id = 1;
+}
+
+message GoalResponse {
+    string id = 1;
+    string user_id = 2;
+    string name = 3;
+    float target_amount = 4;
+    float current_amount = 5;
+    string deadline = 6;
+    string status = 7;
+    string created_at = 8;
+    string updated_at = 9;
+}
+
+message GoalsResponse {
+    repeated GoalResponse goals = 1;
+}
+
+message Empty {}

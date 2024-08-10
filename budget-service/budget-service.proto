@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package budget;
+
+option go_package = "./genproto/budget";
+
+service BudgetService {
+    rpc CreateBudget(CreateBudgetRequest) returns (BudgetResponse);
+    rpc GetBudgets(GetBudgetsRequest) returns (BudgetsResponse);
+    rpc GetBudgetById(GetBudgetByIdRequest) returns (BudgetResponse);
+    rpc UpdateBudget(UpdateBudgetRequest) returns (BudgetResponse);
+    rpc DeleteBudget(DeleteBudgetRequest) returns (Empty);
+}
+
+message CreateBudgetRequest {
+    string user_id = 1;
+    string category_id = 2;
+    float amount = 3;
+    string period = 4;
+    string start_date = 5;
+    string end_date = 6;
+}
+
+message GetBudgetsRequest {
+    string user_id = 1;
+}
+
+message GetBudgetByIdRequest {
+    string id = 1;
+}
+
+message UpdateBudgetRequest {
+    string id = 1;
+    float amount = 2;
+    string period = 3;
+    string start_date = 4;
+    string end_date = 5;
+}
+
+message DeleteBudgetRequest {
+    string id = 1;
+}
+
+message BudgetResponse {
+    string id = 1;
+    string user_id = 2;
+    string category_id = 3;
+    float amount = 4;
+    string period = 5;
+    string start_date = 6;
+    string end_date = 7;
+    string created_at = 8;
+    string updated_at = 9;
+}
+
+message BudgetsResponse {
+    repeated BudgetResponse budgets = 1;
+}
+
+message Empty {}

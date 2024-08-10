@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package notification;
+
+option go_package = "./genproto/notification";
+
+service NotificationService {
+    rpc GetNotifications(GetNotificationsRequest) returns (NotificationsResponse);
+    rpc MarkNotificationAsRead(MarkNotificationAsReadRequest) returns (Empty);
+}
+
+message GetNotificationsRequest {
+    string user_id = 1;
+}
+
+message MarkNotificationAsReadRequest {
+    string id = 1;
+}
+
+message NotificationResponse {
+    string id = 1;
+    string user_id = 2;
+    string message = 3;
+    bool is_read = 4;
+    string created_at = 5;
+}
+
+message NotificationsResponse {
+    repeated NotificationResponse notifications = 1;
+}
+
+message Empty {}
