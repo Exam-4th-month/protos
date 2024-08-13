@@ -54,15 +54,3 @@ message GoalProgressReportResponse {
     float target_amount = 2;
     map<string, float> category_performance = 3;
 }
-
-message GoalResponse {
-    string id = 1;
-    string user_id = 2;
-    string name = 3;
-    float target_amount = 4;
-    float current_amount = 5;
-    string deadline = 6;
-    string status = 7;
-    string created_at = 8;
-    string updated_at = 9;
-}
