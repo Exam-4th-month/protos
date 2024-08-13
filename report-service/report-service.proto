@@ -25,12 +25,12 @@ message GetIncomeReportRequest {
 
 message GetBudgetPerformanceReportRequest {
     string user_id = 1;
-    string start_date = 2;
-    string end_date = 3;
+    string budget_id = 2;
 }
 
 message GetGoalProgressReportRequest {
     string user_id = 1;
+    string goal_id = 2;
 }
 
 message SpendingReportResponse {
@@ -50,7 +50,9 @@ message BudgetPerformanceReportResponse {
 }
 
 message GoalProgressReportResponse {
-    repeated GoalResponse goals = 1;
+    float total_progress = 1;
+    float target_amount = 2;
+    map<string, float> category_performance = 3;
 }
 
 message GoalResponse {
