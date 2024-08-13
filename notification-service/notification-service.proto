@@ -5,9 +5,15 @@ package notification;
 option go_package = "./genproto/notification";
 
 service NotificationService {
+    rpc CreateNotification(CreateNotificationRequest) returns (NotificationResponse);
     rpc GetNotifications(GetNotificationsRequest) returns (NotificationsResponse);
     rpc MarkNotificationAsRead(MarkNotificationAsReadRequest) returns (Empty);
 }
+
+message CreateNotificationRequest{
+    string user_id = 1;
+    string message = 2;
+} 
 
 message GetNotificationsRequest {
     string user_id = 1;
